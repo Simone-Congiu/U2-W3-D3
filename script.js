@@ -13,7 +13,7 @@ const getLibraries = function () {
       let spinner = document.getElementById("spinner");
       spinner.classList.add("d-none");
       let row = document.querySelector(".row");
-      data.forEach((element) => {
+      data.forEach((element,i) => {
         let column = document.createElement("div");
         column.classList.add(
           "d-flex",
@@ -40,28 +40,27 @@ const getLibraries = function () {
           </div>`;
 
         row.appendChild(column);
-      });
+      
       let deleteButton = document.querySelectorAll("#remove-button");
       let addButton = document.querySelectorAll("#addToCarr");
-      deleteButton.forEach((but) => {
-        but.addEventListener("click", () => {
-          but.parentElement.parentElement.parentElement.remove();
-          console.log(deleteButton.parentElement);
+      let alldeletebutton=deleteButton[i]
+        alldeletebutton.addEventListener("click", () => {
+          alldeletebutton.parentElement.parentElement.parentElement.remove();
+          
         });
-      });
-
-      addButton.forEach((addB) => {
-        let ul = document.querySelector("ul");
-
-        addB.addEventListener("click", () => {
+      
+      let ul = document.querySelector("ul")
+      let allB=addButton[i]
+        allB.addEventListener("click", () => {
           let singleLi = document.createElement("li");
-          singleLi.innerText = `${addB.parentElement.parentElement}`;
-          console.log(addB.parentElement.parentElement);
+          singleLi.innerHTML = `Titolo: ${element.title} Prezzo: ${element.price}`;
+          
 
           ul.appendChild(singleLi);
         });
       });
     })
+  
     .catch((err) => {
       console.log(err);
     });
